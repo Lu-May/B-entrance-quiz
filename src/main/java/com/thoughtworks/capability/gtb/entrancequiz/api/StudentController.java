@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class StudentController {
+    //TODO GTB-知识点: - StudentController.java:13 数据相关操作，不输入controller职责，应该属于repository的职责
     public List<Student> studentList = initStudentList();
 
     private List<Student> initStudentList() {
@@ -32,8 +33,11 @@ public class StudentController {
         return ResponseEntity.ok(studentList);
     }
 
+    //TODO GTB-知识点: - StudentController.java:36 path命名不符合restful实践，path中应该不包含动词
     @PostMapping("/student/add")
+    //TODO GTB-知识点: - StudentController.java:38 了解下@ResponseStatus
     public ResponseEntity<Object> addStudent(@RequestBody String studentName) {
+        //TODO GTB-知识点: - StudentController.java:38 业务流程相关操作，应该属于service的职责
         studentList.add(new Student(studentName));
         return ResponseEntity.created(null).build();
     }
